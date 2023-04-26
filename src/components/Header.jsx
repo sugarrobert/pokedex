@@ -35,12 +35,19 @@ function header() {
 
     return (
         <>
-            <header>
-                <nav className="relative z-[2] flex flex-row justify-between bg-theme-third px-7 pb-3 pt-5">
-                    <img src={logo} alt="Pokemon Logo" width="58" height="22" />
+            <header className="z-[1] bg-theme-third shadow-md">
+                <nav className="relative z-[2] mx-auto flex max-w-[1440px] flex-row items-center justify-between px-7 pb-3 pt-5">
+                    <img
+                        src={logo}
+                        alt="Pokemon Logo"
+                        width="158"
+                        height="63"
+                        className="w-14 md:h-11 md:w-28"
+                    />
                     <button
                         className="menu-trigger group relative md:hidden"
                         onClick={toggleMenu}
+                        title="Menu trigger"
                     >
                         <div className="flex h-[22px] w-[30px] flex-col justify-between overflow-hidden">
                             <div className="h-[5px] w-7 rounded-sm bg-black"></div>
@@ -51,10 +58,10 @@ function header() {
                     <ul
                         id="menu-container"
                         className={`menu-container lg: absolute left-0 right-0 top-0 flex flex-col items-center justify-between rounded-b-2xl bg-gradient-to-b from-theme-third to-theme-primary pb-[47px] pt-[37px] shadow-md transition-transform md:static md:transform-none md:flex-row md:bg-none md:pb-0 md:pt-0 md:shadow-none ${
-                            menuOpen ? 'translate-y-0' : 'translate-y-[-100%]'
+                            menuOpen ? 'translate-y-0' : 'translate-y-[-110%]'
                         }`}
                     >
-                        <li className="lg:hidden">
+                        <li className="md:hidden">
                             <img
                                 src={logo}
                                 alt="Pokemon Logo"
