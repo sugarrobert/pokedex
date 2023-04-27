@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PokeCard from '../components/PokeCard';
 
 function Pokedex() {
     const [pokemons, setPokemons] = useState([]);
+    const shouldFetch = useRef(true);
 
     useEffect(() => {
-        const getPokemons = () => {
+        if (shouldFetch.current) {
             fetch('https://pokeapi.co/api/v2/pokemon/')
                 .then((res) => res.json())
                 .then(function (data) {
@@ -13,9 +14,8 @@ function Pokedex() {
                         fetchPokemonData(pokemon);
                     });
                 });
-        };
-
-        getPokemons();
+            shouldFetch.current = false;
+        }
     }, []);
 
     const fetchPokemonData = (pokemon) => {
@@ -54,11 +54,11 @@ function Pokedex() {
                     </button>
                 </div>
                 <ul>
-                    {pokemons.map((pokemon) => (
+                    {pokemons.map((pokemon, index) => (
                         <PokeCard
                             pokemon={pokemon}
-                            key={pokemon.id}
-                            id={pokemon.id}
+                            key={index}
+                            id={index}
                         ></PokeCard>
                     ))}
                 </ul>
