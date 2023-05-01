@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import PokeCard from '../components/PokeCard';
+import PokemonSearch from '../components/PokemonSearch';
 
 function Pokedex() {
     const [pokemons, setPokemons] = useState([]);
@@ -55,21 +56,13 @@ function Pokedex() {
             <main className="mx-auto flex w-full max-w-[1440px] flex-grow flex-col items-start px-7">
                 <div className="mx-auto max-w-[1440px] pb-7 pt-11">
                     <h1 className="text-center font-karla text-2xl tracking-[4px]">
-                        800 <b>Pokemons</b> for you to choose your favorite
+                        {pokemonCount} <b>Pokemons</b> for you to choose your
+                        favorite
                     </h1>
                 </div>
 
-                <div className="mb-4 w-full">
-                    <label htmlFor="search-pokemons" className="sr-only">
-                        Find your pokemon
-                    </label>
-                    <input
-                        type="text"
-                        id="search-pokemons"
-                        placeholder="Find your pokemon..."
-                        className="w-full rounded-[40px] bg-theme-white px-5 py-2 shadow-[4px_4px_4px_rgba(33,33,33,0.1)]"
-                    />
-                </div>
+                <PokemonSearch pokemonCount={pokemonCount} />
+
                 <div className="mb-8">
                     <button className="min-w-[77px] rounded-lg bg-theme-white px-3 py-1 text-xs shadow-[2px_2px_2px_rgba(33,33,33,0.1)]">
                         Filter
