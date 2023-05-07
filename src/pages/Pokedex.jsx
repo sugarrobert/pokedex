@@ -1,9 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+import PokedexContext from '../context/PokedexContext';
 import PokeCard from '../components/PokeCard';
 import PokemonSearch from '../components/PokemonSearch';
+import Filters from '../components/Filters';
 
 function Pokedex() {
-    const [pokemons, setPokemons] = useState([]);
+    const { pokemonsList, filteredPokemonsList, dispatch } =
+        useContext(PokedexContext);
     const [nextPage, setNextPage] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
     const [page, setPage] = useState(0);
@@ -24,10 +27,18 @@ function Pokedex() {
                             (a, b) => a.order - b.order
                         );
 
-                        setPokemons((prevPokemons) => [
-                            ...prevPokemons,
-                            ...sortedArray,
-                        ]);
+                        if (pokemonsList.length === 0) {
+                            dispatch({
+                                type: 'SET_POKEMON_LIST',
+                                payload: sortedArray,
+                            });
+                        } else {
+                            dispatch({
+                                type: 'UPDATE_POKEMON_LIST',
+                                payload: sortedArray,
+                            });
+                        }
+
                         setPokemonCount(data.count);
                         setNextPage(data.next);
                         setPrevPage(data.previous);
@@ -63,26 +74,33 @@ function Pokedex() {
 
                 <PokemonSearch pokemonCount={pokemonCount} />
 
-                <div className="mb-8">
-                    <button className="min-w-[77px] rounded-lg bg-theme-white px-3 py-1 text-xs shadow-[2px_2px_2px_rgba(33,33,33,0.1)]">
-                        Filter
-                    </button>
-                </div>
+                <Filters />
+
                 <ul className="mb-6 grid w-full gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-9">
-                    {pokemons.map((pokemon, index) => (
-                        <PokeCard
-                            pokemon={pokemon}
-                            key={index}
-                            id={index}
-                        ></PokeCard>
-                    ))}
+                    {filteredPokemonsList.length >= 1
+                        ? filteredPokemonsList.map((pokemon) => (
+                              <PokeCard
+                                  pokemon={pokemon}
+                                  key={pokemon.name}
+                                  id={pokemon.name}
+                              ></PokeCard>
+                          ))
+                        : pokemonsList.map((pokemon) => (
+                              <PokeCard
+                                  pokemon={pokemon}
+                                  key={pokemon.name}
+                                  id={pokemon.name}
+                              ></PokeCard>
+                          ))}
                 </ul>
-                <button
-                    className="mx-auto mb-5 w-full  rounded-[11px] bg-[#73D677] px-7 pb-4 pt-3 text-center font-karla font-bold shadow-[inset_0px_-9px_0px_rgba(0,0,0,0.18)] md:w-auto lg:text-left"
-                    onClick={loadMore}
-                >
-                    Load more
-                </button>
+                {nextPage && !filteredPokemonsList.length && (
+                    <button
+                        className="mx-auto mb-5 w-full  rounded-[11px] bg-[#73D677] px-7 pb-4 pt-3 text-center font-karla font-bold shadow-[inset_0px_-9px_0px_rgba(0,0,0,0.18)] md:w-auto lg:text-left"
+                        onClick={loadMore}
+                    >
+                        Load more
+                    </button>
+                )}
             </main>
         </>
     );

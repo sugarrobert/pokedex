@@ -35,8 +35,8 @@ function header() {
 
     return (
         <>
-            <header className="z-[1] bg-theme-third shadow-md">
-                <nav className="relative z-[2] mx-auto flex max-w-[1440px] flex-row items-center justify-between px-7 pb-3 pt-5">
+            <header className="bg-theme-third shadow-md">
+                <nav className="relative mx-auto flex max-w-[1440px] flex-row items-center justify-between px-7 pb-3 pt-5">
                     <img
                         src={logo}
                         alt="Pokemon Logo"
@@ -48,6 +48,7 @@ function header() {
                         className="menu-trigger group relative md:hidden"
                         onClick={toggleMenu}
                         title="Menu trigger"
+                        type="button"
                     >
                         <div className="flex h-[22px] w-[30px] flex-col justify-between overflow-hidden">
                             <div className="h-[5px] w-7 rounded-sm bg-black"></div>
@@ -57,7 +58,7 @@ function header() {
                     </button>
                     <ul
                         id="menu-container"
-                        className={`menu-container lg: absolute left-0 right-0 top-0 flex flex-col items-center justify-between rounded-b-2xl bg-gradient-to-b from-theme-third to-theme-primary pb-[47px] pt-[37px] shadow-md transition-transform md:static md:transform-none md:flex-row md:bg-none md:pb-0 md:pt-0 md:shadow-none ${
+                        className={`menu-container lg: absolute left-0 right-0 top-0 z-[3] flex flex-col items-center justify-between rounded-b-2xl bg-gradient-to-b from-theme-third to-theme-primary pb-[47px] pt-[37px] shadow-md transition-transform md:static md:transform-none md:flex-row md:bg-none md:pb-0 md:pt-0 md:shadow-none ${
                             menuOpen ? 'translate-y-0' : 'translate-y-[-110%]'
                         }`}
                     >
@@ -111,7 +112,7 @@ function header() {
             </header>
             <div
                 id="menu-overlay"
-                className={`menu-overlay absolute bottom-0 top-0 w-full bg-theme-dark opacity-50 ${
+                className={`menu-overlay fixed bottom-0 top-0 z-[2] w-full bg-theme-dark opacity-50 ${
                     menuOpen ? '' : 'hidden'
                 }`}
                 onClick={toggleMenu}

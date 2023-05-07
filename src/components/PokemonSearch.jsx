@@ -52,7 +52,7 @@ function PokemonSearch({ pokemonCount }) {
     }, 300);
 
     return (
-        <div className="relative isolate z-[2] mb-4 w-full">
+        <div className="relative mb-4 w-full">
             <label htmlFor="search-pokemons" className="sr-only">
                 Find your pokemon
             </label>
