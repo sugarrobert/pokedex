@@ -52,7 +52,12 @@ function PokeCard(pokemon) {
                     .join(' ')} relative flex items-center justify-center`}
             >
                 <img
-                    src={sprites.other.dream_world.front_default}
+                    src={
+                        sprites.other.dream_world.front_default ||
+                        sprites.other.home.front_default ||
+                        sprites.other['official-artwork'].front_default ||
+                        sprites.front_default
+                    }
                     width="220"
                     height="220"
                     alt={name}
