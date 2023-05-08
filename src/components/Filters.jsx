@@ -88,20 +88,20 @@ function Filters() {
         <div className="mb-8">
             <button
                 type="button"
-                className="min-w-[77px] rounded-lg bg-theme-white px-3 py-1 text-xs shadow-[2px_2px_2px_rgba(33,33,33,0.1)]"
+                className="min-w-[77px] rounded-lg bg-theme-white px-3 py-1 text-xs shadow-[2px_2px_2px_rgba(33,33,33,0.1)] md:hidden"
                 onClick={toggleFilters}
             >
                 Filter
             </button>
             <div
                 id="filters-container"
-                className={`absolute left-0 right-0 top-0 z-[3] flex flex-col justify-between rounded-b-2xl bg-gradient-to-b from-theme-third to-theme-primary px-7 pb-6 pt-8 shadow-md transition-transform md:static md:transform-none md:flex-row md:bg-none md:pb-0 md:pt-0 md:shadow-none ${
+                className={`absolute left-0 right-0 top-0 z-[3] flex flex-col justify-between rounded-b-2xl bg-gradient-to-b from-theme-third to-theme-primary px-7 pb-6 pt-8 shadow-md transition-transform md:static md:transform-none md:flex-row md:bg-none md:px-0 md:pb-0 md:pt-0 md:shadow-none ${
                     filtersOpen ? 'translate-y-0' : 'translate-y-[-110%]'
                 }`}
             >
                 <button
                     type="button"
-                    className="absolute right-6 top-5"
+                    className="absolute right-6 top-5 md:hidden"
                     onClick={toggleFilters}
                     title="Close"
                 >
@@ -129,9 +129,13 @@ function Filters() {
                         />
                     </svg>
                 </button>
-                <div className="mb-5 border-b-2 border-theme-white pb-5">
-                    <p className="mb-5 text-2xl">Type</p>
-                    <ul className="grid grid-cols-3 gap-x-5 gap-y-2">
+                <div className="group/filters mb-5 border-b-2 border-theme-white pb-5 md:relative md:relative md:mb-0 md:border-none md:pb-0">
+                    <button className=" pointer-events-none mb-5 rounded text-2xl md:pointer-events-auto md:mb-2 md:min-w-[135px] md:bg-theme-white md:text-center md:text-base md:shadow-[2px_2px_2px_rgba(33,33,33,0.1)]">
+                        Type
+                    </button>
+                    <ul
+                        className={`grid origin-top grid-cols-3 gap-x-5 gap-y-2 md:absolute md:z-10 md:w-max md:scale-y-0 md:rounded-lg md:bg-theme-white md:p-3 md:shadow-[2px_2px_2px_rgba(33,33,33,0.1)] md:transition-transform md:group-hover/filters:scale-y-100`}
+                    >
                         {pokemonType.map((type) => (
                             <li
                                 className="group/type cursor-pointer"
@@ -157,7 +161,7 @@ function Filters() {
             </div>
             <div
                 id="filters-overlay"
-                className={`fixed bottom-0 left-0 top-0 z-[2] w-full bg-theme-dark opacity-50 ${
+                className={`fixed bottom-0 left-0 top-0 z-[2] w-full bg-theme-dark opacity-50 md:hidden ${
                     filtersOpen ? '' : 'hidden'
                 }`}
                 onClick={toggleFilters}
