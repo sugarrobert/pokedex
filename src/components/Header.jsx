@@ -35,7 +35,7 @@ function header() {
 
     return (
         <>
-            <header className="bg-theme-third shadow-md">
+            <header className="z-[3] bg-theme-third shadow-md">
                 <nav className="relative mx-auto flex max-w-[1440px] flex-row items-center justify-between px-7 pb-3 pt-5">
                     <img
                         src={logo}
