@@ -1,31 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 
 function header() {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [activeItem, setActiveItem] = useState('home');
     const location = useLocation();
 
     useEffect(() => {
         // Close the off-canvas menu when the route changes
         setMenuOpen(false);
-
-        // Set active item based on current location pathname
-        switch (location.pathname) {
-            case '/pokedex':
-                setActiveItem('pokedex');
-                break;
-            case '/legendaries':
-                setActiveItem('legendaries');
-                break;
-            case '/documentation':
-                setActiveItem('documentation');
-                break;
-            default:
-                setActiveItem('home');
-                break;
-        }
     }, [location.pathname]);
 
     // toggle menu open/closed
@@ -71,41 +54,37 @@ function header() {
                                 className="mb-[36px]"
                             />
                         </li>
-                        <li
-                            className={`mb-4 border-b-[3px] border-solid pb-2 text-2xl md:mr-[42px] md:pb-4 ${
-                                activeItem === 'home'
-                                    ? 'border-theme-dark'
-                                    : 'border-transparent'
-                            }`}
-                        >
-                            <Link to="/">Home</Link>
+                        <li className={`mb-4 text-2xl md:mr-[42px]`}>
+                            <NavLink
+                                className={`border-b-[3px] border-solid border-transparent pb-2 md:pb-4 [&.active]:border-theme-dark`}
+                                to="/"
+                            >
+                                Home
+                            </NavLink>
                         </li>
-                        <li
-                            className={`mb-4 border-b-[3px] border-solid pb-2 text-2xl md:mr-[42px] md:pb-4 ${
-                                activeItem === 'pokedex'
-                                    ? 'border-theme-dark'
-                                    : 'border-transparent'
-                            }`}
-                        >
-                            <Link to="/pokedex">Pokedex</Link>
+                        <li className={`mb-4 text-2xl md:mr-[42px]`}>
+                            <NavLink
+                                className={`border-b-[3px] border-solid border-transparent pb-2 md:pb-4 [&.active]:border-theme-dark`}
+                                to="/pokedex"
+                            >
+                                Pokedex
+                            </NavLink>
                         </li>
-                        <li
-                            className={`mb-4 border-b-[3px] border-solid pb-2 text-2xl md:mr-[42px] md:pb-4 ${
-                                activeItem === 'legendaries'
-                                    ? 'border-theme-dark'
-                                    : 'border-transparent'
-                            }`}
-                        >
-                            <Link to="/legendaries">Legendaries</Link>
+                        <li className={`mb-4 text-2xl md:mr-[42px]`}>
+                            <NavLink
+                                className={`border-b-[3px] border-solid border-transparent pb-2 md:pb-4 [&.active]:border-theme-dark`}
+                                to="/legendaries"
+                            >
+                                Legendaries
+                            </NavLink>
                         </li>
-                        <li
-                            className={`mb-4 border-b-[3px] border-solid pb-2 text-2xl md:pb-4 ${
-                                activeItem === 'documentation'
-                                    ? 'border-theme-dark'
-                                    : 'border-transparent'
-                            }`}
-                        >
-                            <Link to="/documentation">Documentation</Link>
+                        <li className={`mb-4 text-2xl md:mr-[42px]`}>
+                            <NavLink
+                                className={`border-b-[3px] border-solid border-transparent pb-2 md:pb-4 [&.active]:border-theme-dark`}
+                                to="/documentation"
+                            >
+                                Documentation
+                            </NavLink>
                         </li>
                     </ul>
                 </nav>
