@@ -16,8 +16,8 @@ function PokemonCategory({ pokemonCategory }) {
     };
 
     return (
-        <div>
-            <span>Category</span>
+        <div className="flex flex-col">
+            <span className="text-lg font-bold text-white">Category</span>
             <span>{category}</span>
         </div>
     );

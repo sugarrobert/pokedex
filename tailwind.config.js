@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require('tailwindcss/plugin');
+
 export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
@@ -29,11 +32,61 @@ export default {
                 steel: '#A1A1A1',
                 fairy: '#A974BC',
             },
+            screens: {
+                '2xl_max': { max: '1535px' },
+
+                xl_max: { max: '1279px' },
+
+                lg_max: { max: '1023px' },
+
+                md_max: { max: '767px' },
+
+                sm_max: { max: '639px' },
+            },
+            backgroundImage: {
+                'pokemon-heading-mask':
+                    "url('/src/assets/pokemon-page/notch-white.png')",
+                'pokemon-evolution-background':
+                    "url('/src/assets/pokemon-page/body-gray-bg.png')",
+            },
+            gridTemplateRows: {
+                20: 'repeat(20, minmax(0, 1fr))',
+            },
         },
         fontFamily: {
             sans: ['Source Sans Pro', 'sans-serif'],
             karla: ['Karla', 'sans-serif'],
         },
     },
-    plugins: [],
+    plugins: [
+        plugin(function ({ matchVariant }) {
+            matchVariant(
+                'nth',
+                (value) => {
+                    return `&:nth-child(${value})`;
+                },
+                {
+                    values: {
+                        1: '1',
+                        2: '2',
+                        3: '3',
+                    },
+                }
+            );
+
+            matchVariant(
+                'last-two',
+                (value) => {
+                    return `&:nth-last-child(-n+${value})`;
+                },
+                {
+                    values: {
+                        2: '2',
+                        3: '3',
+                        4: '4',
+                    },
+                }
+            );
+        }),
+    ],
 };

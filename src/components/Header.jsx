@@ -78,14 +78,6 @@ function header() {
                                 Legendaries
                             </NavLink>
                         </li>
-                        <li className={`mb-4 text-2xl md:mr-[42px]`}>
-                            <NavLink
-                                className={`border-b-[3px] border-solid border-transparent pb-2 md:pb-4 [&.active]:border-theme-dark`}
-                                to="/documentation"
-                            >
-                                Documentation
-                            </NavLink>
-                        </li>
                     </ul>
                 </nav>
             </header>

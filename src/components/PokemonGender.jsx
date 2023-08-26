@@ -7,8 +7,8 @@ function PokemonGender({ genderDifferences, genderRate }) {
     const femaleImg = (
         <img
             src={femaleIcon}
-            width="30"
-            height="30"
+            width="25"
+            height="25"
             key="FemaleIcon"
             alt="Female gender symbol"
         />
@@ -17,8 +17,8 @@ function PokemonGender({ genderDifferences, genderRate }) {
     const maleImg = (
         <img
             src={maleIcon}
-            width="30"
-            height="30"
+            width="25"
+            height="25"
             key="MaleIcon"
             alt="Male gender symbol"
         />
@@ -37,8 +37,8 @@ function PokemonGender({ genderDifferences, genderRate }) {
     }
 
     return (
-        <div>
-            <span>Gender</span>
+        <div className="flex flex-col">
+            <span className="text-lg font-bold text-white">Gender</span>
             <div className="flex flex-row">{icons}</div>
         </div>
     );

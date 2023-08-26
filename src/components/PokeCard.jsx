@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PokemonType from './PokemonType';
+import PokemonImage from './PokemonImage';
 import { transformTypesResponse } from '../helpers/TransformTypesResponse';
 
 function PokeCard(pokemon) {
@@ -47,18 +48,12 @@ function PokeCard(pokemon) {
                     .filter((name) => name !== null)
                     .join(' ')} relative flex items-center justify-center`}
             >
-                <img
-                    src={
-                        sprites.other.dream_world.front_default ||
-                        sprites.other.home.front_default ||
-                        sprites.other['official-artwork'].front_default ||
-                        sprites.front_default
-                    }
-                    width="220"
-                    height="220"
+                <PokemonImage
+                    sprites={sprites}
+                    width={160}
+                    height={160}
                     alt={name}
-                    loading="lazy"
-                    className="absolute max-h-full max-w-full"
+                    className={'aspect-square'}
                 />
             </div>
             <Link

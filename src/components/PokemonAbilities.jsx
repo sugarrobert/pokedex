@@ -6,10 +6,12 @@ function PokemonAbilities({ pokemonAbilities }) {
     );
 
     return (
-        <div>
-            <span>Abilities </span>
+        <div className="flex flex-col">
+            <span className="text-lg font-bold text-white">Abilities </span>
             {visibleAbilities.map(({ ability }) => (
-                <span key={ability.name}>{ability.name} </span>
+                <span key={ability.name} className="capitalize">
+                    {ability.name}
+                </span>
             ))}
         </div>
     );

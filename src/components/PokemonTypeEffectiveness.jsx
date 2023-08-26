@@ -41,13 +41,19 @@ function PokemonTypeEffectiveness({ pokemonType }) {
 
     return (
         <>
-            <div>
-                <p>Weaknesses</p>
-                <PokemonType types={pokemonWeaknesses} />
+            <div className="mb-3 flex flex-col gap-2">
+                <span className="text-lg">Weaknesses</span>
+                <PokemonType
+                    types={pokemonWeaknesses}
+                    className={'px-4 py-1 text-sm'}
+                />
             </div>
-            <div>
-                <p>Advantages</p>
-                <PokemonType types={pokemonAdvantages} />
+            <div className="mb-3 flex flex-col gap-2">
+                <span className="text-lg">Advantages</span>
+                <PokemonType
+                    types={pokemonAdvantages}
+                    className={'px-4 py-1 text-sm'}
+                />
             </div>
         </>
     );

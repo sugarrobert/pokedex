@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PokemonStats({ pokemonStats }) {
+function PokemonStatsShort({ pokemonStats }) {
     return (
         <div className="flex flex-row justify-around">
             <span>Stats</span>
@@ -23,4 +23,4 @@ function PokemonStats({ pokemonStats }) {
     );
 }
 
-export default PokemonStats;
+export default PokemonStatsShort;
