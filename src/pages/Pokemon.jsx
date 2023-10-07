@@ -162,6 +162,7 @@ function Pokemon() {
                             <PokemonType
                                 types={transformedTypes}
                                 className={'px-4 py-1 text-sm'}
+                                wrap={true}
                             />
                         </div>
                         <PokemonTypeEffectiveness

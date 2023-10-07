@@ -1,9 +1,9 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-function PokemonType({ types, className }) {
+function PokemonType({ types, wrap, className }) {
     return (
-        <div className="flex flex-wrap gap-3">
+        <div className={`flex gap-3 ${wrap ? 'flex-wrap' : 'flex-nowrap'}`}>
             {types.map((type, index) => (
                 <span
                     key={type.name + index}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import debounce from '../utils/debounce';
 
 function PokemonSearch({ pokemonCount }) {
@@ -17,7 +18,7 @@ function PokemonSearch({ pokemonCount }) {
                     const list = data.results;
 
                     const nameList = list.map((pokemon) => {
-                        return String(pokemon.name);
+                        return pokemon;
                     });
 
                     setPokemonList(nameList);
@@ -34,6 +35,14 @@ function PokemonSearch({ pokemonCount }) {
         }
     };
 
+    // get pokemon Id from pokemon url
+    const getPokemonId = (url) => {
+        const newUrlArray = url.split('/').filter((part) => part !== '');
+        const pokeId = newUrlArray.pop();
+
+        return pokeId;
+    };
+
     // debounce the searchPokemons function to run only once every 300 milliseconds
     const searchPokemons = debounce((e) => {
         const searchValue = e.target.value.toLowerCase();
@@ -42,7 +51,7 @@ function PokemonSearch({ pokemonCount }) {
             if (
                 searchValue !== '' &&
                 searchValue.length >= 3 &&
-                pokeName.toLowerCase().includes(searchValue)
+                pokeName.name.toLowerCase().includes(searchValue)
             ) {
                 return pokeName;
             }
@@ -70,10 +79,17 @@ function PokemonSearch({ pokemonCount }) {
                 } ${searchResults.length > 10 ? 'grid-cols-2' : ''}`}
             >
                 {searchResults.map((result, index) => {
+                    let id = getPokemonId(result.url);
+
                     if (index < 20) {
                         return (
                             <li key={index} className="capitalize">
-                                {result}
+                                <Link
+                                    className=""
+                                    to={`/pokemon/${result.name}/${id}`}
+                                >
+                                    {result.name}
+                                </Link>
                             </li>
                         );
                     }

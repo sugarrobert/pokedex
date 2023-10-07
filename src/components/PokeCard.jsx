@@ -11,7 +11,9 @@ function PokeCard(pokemon) {
 
     // bg-normal bg-fire bg-fighting bg-water bg-flying bg-grass bg-poison bg-electric bg-ground bg-psychic bg-rock bg-ice bg-bug bg-dragon bg-ghost bg-dark bg-steel bg-fairy
     return (
-        <li className="relative isolate grid min-h-[165px] grid-cols-[1fr_2fr] overflow-hidden rounded-lg bg-theme-white pl-6 shadow-[4px_4px_16px_rgba(1,28,64,0.2)]">
+        <li
+            className={`relative isolate grid min-h-[165px] grid-cols-[1fr_2fr] overflow-hidden rounded-lg bg-theme-white pl-6 shadow-[4px_4px_16px_rgba(1,28,64,0.2)] transition-shadow hover:shadow-theme-primary`}
+        >
             <div className="relative z-[1] py-3">
                 <div className="absolute top-1/2 -translate-y-1/2 transform">
                     <p className="mb-3 font-karla text-lg font-bold capitalize">
@@ -39,7 +41,11 @@ function PokeCard(pokemon) {
                             }
                         })}
                     </div>
-                    <PokemonType types={transformedTypes} />
+                    <PokemonType
+                        types={transformedTypes}
+                        className={'flex-nowrap'}
+                        wrap={false}
+                    />
                 </div>
             </div>
             <div

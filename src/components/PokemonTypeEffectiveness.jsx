@@ -46,6 +46,7 @@ function PokemonTypeEffectiveness({ pokemonType }) {
                 <PokemonType
                     types={pokemonWeaknesses}
                     className={'px-4 py-1 text-sm'}
+                    wrap={true}
                 />
             </div>
             <div className="mb-3 flex flex-col gap-2">
@@ -53,6 +54,7 @@ function PokemonTypeEffectiveness({ pokemonType }) {
                 <PokemonType
                     types={pokemonAdvantages}
                     className={'px-4 py-1 text-sm'}
+                    wrap={true}
                 />
             </div>
         </>
