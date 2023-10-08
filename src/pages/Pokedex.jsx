@@ -76,7 +76,7 @@ function Pokedex() {
 
                 <Filters />
 
-                <ul className="mb-6 grid w-full gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-9">
+                <ul className="mb-6 grid w-full gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-9 xl:grid-cols-4">
                     {filteredPokemonsList.length >= 1
                         ? filteredPokemonsList.map((pokemon) => (
                               <PokeCard

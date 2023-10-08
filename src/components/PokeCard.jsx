@@ -3,16 +3,27 @@ import { Link } from 'react-router-dom';
 import PokemonType from './PokemonType';
 import PokemonImage from './PokemonImage';
 import { transformTypesResponse } from '../helpers/TransformTypesResponse';
+import { twMerge } from 'tailwind-merge';
 
 function PokeCard(pokemon) {
     const { name, types, stats, sprites, id } = pokemon.pokemon;
 
     const transformedTypes = transformTypesResponse(types);
 
-    // bg-normal bg-fire bg-fighting bg-water bg-flying bg-grass bg-poison bg-electric bg-ground bg-psychic bg-rock bg-ice bg-bug bg-dragon bg-ghost bg-dark bg-steel bg-fairy
+    const getPokemonType = () => {
+        return types
+            .map((type) => (type.slot === 1 ? type.type.name : null))
+            .filter((name) => name !== null)
+            .join(' ');
+    };
+
+    // bg-normal bg-fire bg-fighting bg-water bg-flying bg-grass shadow-grass bg-poison bg-electric bg-ground bg-psychic bg-rock bg-ice bg-bug bg-dragon bg-ghost bg-dark bg-steel bg-fairy
+    // hover:shadow-normal hover:shadow-fire hover:shadow-fighting hover:shadow-water hover:shadow-flying hover:shadow-grass shadow-grass hover:shadow-poison hover:shadow-electric hover:shadow-ground hover:shadow-psychic hover:shadow-rock hover:shadow-ice hover:shadow-bug hover:shadow-dragon hover:shadow-ghost hover:shadow-dark hover:shadow-steel hover:shadow-fairy
     return (
         <li
-            className={`relative isolate grid min-h-[165px] grid-cols-[1fr_2fr] overflow-hidden rounded-lg bg-theme-white pl-6 shadow-[4px_4px_16px_rgba(1,28,64,0.2)] transition-shadow hover:shadow-theme-primary`}
+            className={twMerge(
+                `relative isolate grid min-h-[165px] grid-cols-[1fr_2fr] overflow-hidden rounded-lg pl-6 shadow-[4px_4px_16px_rgba(1,28,64,0.2)] transition  hover:shadow-theme-white hover:shadow-${getPokemonType()} hover:scale-105`
+            )}
         >
             <div className="relative z-[1] py-3">
                 <div className="absolute top-1/2 -translate-y-1/2 transform">
@@ -49,10 +60,7 @@ function PokeCard(pokemon) {
                 </div>
             </div>
             <div
-                className={`bg-${types
-                    .map((type) => (type.slot === 1 ? type.type.name : null))
-                    .filter((name) => name !== null)
-                    .join(' ')} relative flex items-center justify-center`}
+                className={`bg-${getPokemonType()} relative flex items-center justify-center`}
             >
                 <PokemonImage
                     sprites={sprites}
@@ -63,7 +71,7 @@ function PokeCard(pokemon) {
                 />
             </div>
             <Link
-                className="absolute inset-0"
+                className="absolute inset-0 z-10"
                 to={`/pokemon/${name}/${id}`}
             ></Link>
         </li>

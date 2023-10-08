@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import homeBannerMob from '../assets/homepage/home-banner-mob.png';
 import homeBannerTab from '../assets/homepage/home-banner-tab.png';
 import homeBannerDesk from '../assets/homepage/home-banner-desk.png';
+import PrimaryBtnLink from '../components/buttons/PrimaryBtnLink';
 
 function Home() {
     return (
@@ -36,12 +36,10 @@ function Home() {
                         You can know the type of Pokemon, its strengths,
                         disadvantages and abilities
                     </p>
-                    <Link
-                        className="w-full rounded-[11px] bg-[#73D677] px-7 pb-4 pt-3 text-center font-karla font-bold shadow-[inset_0px_-9px_0px_rgba(0,0,0,0.18)] md:w-auto lg:text-left"
-                        to="/pokedex"
-                    >
-                        See pokemons
-                    </Link>
+                    <PrimaryBtnLink
+                        linkTo={'/pokedex'}
+                        linkText={'See pokemons'}
+                    />
                 </div>
             </div>
         </main>

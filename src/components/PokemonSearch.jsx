@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import PrimaryLink from '../components/buttons/PrimaryLink';
 import debounce from '../utils/debounce';
 
 function PokemonSearch({ pokemonCount }) {
@@ -84,12 +84,10 @@ function PokemonSearch({ pokemonCount }) {
                     if (index < 20) {
                         return (
                             <li key={index} className="capitalize">
-                                <Link
-                                    className=""
-                                    to={`/pokemon/${result.name}/${id}`}
-                                >
-                                    {result.name}
-                                </Link>
+                                <PrimaryLink
+                                    linkTo={`/pokemon/${result.name}/${id}`}
+                                    linkText={result.name}
+                                />
                             </li>
                         );
                     }
